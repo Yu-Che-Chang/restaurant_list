@@ -1,6 +1,9 @@
 # 餐廳清單1.0
+主畫面:
 ![image](https://github.com/Yu-Che-Chang/restaurant_list/blob/main/public/image/main_page.png)
+餐廳簡介:
 ![image](https://github.com/Yu-Che-Chang/restaurant_list/blob/main/public/image/index_page.png)
+錯誤回報:
 ![image](https://github.com/Yu-Che-Chang/restaurant_list/blob/main/public/image/error_page.png)
 
 基本介紹：
