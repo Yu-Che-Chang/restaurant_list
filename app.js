@@ -23,13 +23,15 @@ app.get('/restaurants/:restaurant_id', (req, res) => {
 })
 
 // 查詢字串
+// 優化: En 大小寫轉換 / 餐庭名稱空格去除
 app.get('/search', (req, res) => {
-  const keyword = req.query.keyword
+  const keyword = req.query.keyword.toLowerCase().trim()
   const restaurantRow = restaurantList.results
-  const restaurantFiltered = restaurantList.results.filter(restaurant => {
-    return restaurant.name.toLowerCase().includes(keyword.trim().toLowerCase())
-  })
-  res.render('index', { restaurants: restaurantFiltered, keyword, restaurantRow })
+  const restaurantsFiltered = restaurantList.results.filter(restaurant =>
+    restaurant.name.replace(' ', '').toLowerCase().includes(keyword) ||
+    restaurant.category.toLowerCase().includes(keyword)
+  )
+  res.render('index', { restaurants: restaurantsFiltered, keyword, restaurantRow })
 })
 
 // 靜態樣板
