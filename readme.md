@@ -1,7 +1,7 @@
 # 餐廳清單1.0
-![MyLmage]('https://github.com/Yu-Che-Chang/restaurant_list/blob/main/public/image/main_page.png')
-![MyLmage]('https://github.com/Yu-Che-Chang/restaurant_list/blob/main/public/image/index_page.png')
-![MyLmage]('https://github.com/Yu-Che-Chang/restaurant_list/blob/main/public/image/error_page.png')
+![image]('https://github.com/Yu-Che-Chang/restaurant_list/blob/main/public/image/main_page.png')
+![image]('https://github.com/Yu-Che-Chang/restaurant_list/blob/main/public/image/index_page.png')
+![image]('https://github.com/Yu-Che-Chang/restaurant_list/blob/main/public/image/error_page.png')
 
 基本介紹：
 ---
