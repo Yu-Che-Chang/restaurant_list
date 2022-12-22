@@ -43,7 +43,8 @@ npm install
 ```
 npm run start  //執行程式
 ```
-`終端機顯示Now server is on請至http://localhost:3000開始使用程式`
+`終端機顯示Now server is on請至[link text](http://localhost:3000)
+開始使用程式`
 
 規格：
 ---
