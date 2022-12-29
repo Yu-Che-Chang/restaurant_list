@@ -1,37 +1,43 @@
-const restaurantList = require('./restaurant.json')
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+
+
 const restaurantSchema = new Schema({
   name: {
     type: String,
-    require: true
+    required: true
   },
   name_en: {
     type: String,
+    required: false
   },
   category: {
     type: String,
+    required: false
   },
   phone: {
-    type: Number,
+    type: String,
+    required: false
   },
   image: {
     type: String,
-    require: true
+    required: true
   },
   location: {
     type: String,
-    require: true
+    required: true
   },
   google_map: {
     type: String,
+    required: false
   },
   rating: {
-    type: String,
-    require: true
+    type: Number,
+    required: true
   },
   description: {
     type: String,
+    required: false
   }
 })
 module.exports = mongoose.model('Restaurant', restaurantSchema)
