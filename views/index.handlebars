@@ -18,26 +18,38 @@
 
 <!-- restaurant list -->
 <div class="container mt-5">
-  {{#if restaurants}}
+  {{#if restaurantData}}
   <div class="row">
     <div class="col-md-10 col-12 mx-auto">
       <div class="row row-cols-sm-3">
-        {{#each restaurants}}
-        <a href="/restaurants/{{this.id}}" class="text-secondary">
-          <div class="card mb-3">
-            <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">
-            <div class="card-body p-3">
-              <h6 class="card-title mb-1">{{this.name}}</h6>
-              <div class="restaurant-category mb-1">
-                <i class="fas fa-utensils pr-2"></i> {{this.category}}
+        {{#each restaurantData}}
+        <div>
+          <a href="/restaurants/{{this._id}}" class="text-secondary">
+            <div class="card mb-3">
+              <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">
+              <div class="card-body p-3">
+                <h6 class="card-title mb-1">{{this.name}}</h6>
+                <div class="restaurant-category mb-1">
+                  <i class="fas fa-utensils pr-2"></i> {{this.category}}
+                </div>
+                <span class="badge bg-danger font-weight-normal">
+                  {{this.rating}}
+                  <i class="fas fa-star fa-xs"></i>
+                </span>
               </div>
-              <span class="badge bg-danger font-weight-normal">
-                {{this.rating}}
-                <i class="fas fa-star fa-xs"></i>
-              </span>
             </div>
-          </div>
-        </a>
+          </a>
+          <span class="mb-3">
+            <!-- edit link-->
+            <a href="./restaurants/{{ this._id }}/edit">Edit</a>
+            <!-- detail link-->
+            <a href="./restaurants/{{ this._id }}">Detail</a>
+            <!-- delete button-->
+            <form action="" method="post" style="display: inline;">
+              <button type="submit">delete</button>
+            </form>
+          </span>
+        </div>
         {{/each}}
       </div>
     </div>

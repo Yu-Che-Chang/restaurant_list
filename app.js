@@ -2,13 +2,17 @@ const express = require('express')
 const port = 3000
 const app = express()
 const ephds = require('express-handlebars')
-const restaurantList = require('./restaurant.json') // 載入 餐廳資料
 const mongoose = require('mongoose') // 載入 mongoose
+const bodyParser = require('body-parser')
+const restaurantList = require('./restaurant.json') // 載入 餐廳資料
+const RestaurantModal = require('./models/restaurantModal')
 
 // 加入這段 code, 僅在非正式環境時, 使用 dotenv
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
+app.use(bodyParser.urlencoded({ extender: true })) // res.body 物件
+app.use(express.static("public"))
 
 mongoose.connect(process.env.MONGODB_URI) // 連線到 mongoDB
 
@@ -27,15 +31,20 @@ app.set('view engine', 'handlebars')
 
 // root web
 app.get('/', (req, res) => {
-  res.render('index', { restaurants: restaurantList.results })
+  // get RestaurantModal data
+  RestaurantModal.find() // 找到 DB 資料
+    .lean() // 轉換成 js 格式
+    .then(restaurantData => res.render('index', { restaurantData }))
+    .catch(error => console.error(error))
 })
 
-// params
-app.get('/restaurants/:restaurant_id', (req, res) => {
-  const restaurantInfo = restaurantList.results.find(restaurant =>
-    restaurant.id.toString() === req.params.restaurant_id
-  )
-  res.render('show', { restaurantInfo })
+// detail page
+app.get('/restaurants/:id', (req, res) => {
+  const id = req.params.id
+  RestaurantModal.findById(id)
+    .lean()
+    .then(restaurantData => res.render('show', { restaurantInfo: restaurantData }))
+    .catch(error => console.log(error))
 })
 
 // 查詢字串
@@ -50,8 +59,14 @@ app.get('/search', (req, res) => {
   res.render('index', { restaurants: restaurantsFiltered, keyword, restaurantRow })
 })
 
-// 靜態樣板
-app.use(express.static('public'))
+// edit page
+app.get('/restaurants/:restaurant_id/edit', (req, res) => {
+  const id = req.params.id
+  return restaurantModal.findById(id)
+    .lean()
+    .then(restaurant => res.render('edit', { restaurant }))
+    .catch(error => console.error(error))
+})
 
 app.listen(port, () => {
   console.log(`Now server is on http://localhost:${port}`)
