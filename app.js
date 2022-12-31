@@ -60,13 +60,24 @@ app.get('/search', (req, res) => {
 })
 
 // edit page
-app.get('/restaurants/:restaurant_id/edit', (req, res) => {
+app.get('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
-  return restaurantModal.findById(id)
+  return RestaurantModal.findById(id)
     .lean()
     .then(restaurant => res.render('edit', { restaurant }))
     .catch(error => console.error(error))
 })
+
+// EDIT: 
+app.post('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  const survey = req.body
+  RestaurantModal.findByIdAndUpdate(id, survey)
+    .then(() => res.redirect('/')) // 返回首頁
+    .catch(error => console.log('error'))
+})
+
+// CREATE:
 
 app.listen(port, () => {
   console.log(`Now server is on http://localhost:${port}`)

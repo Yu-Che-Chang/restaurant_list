@@ -1,5 +1,56 @@
-<form action="/restaurants/{{ restaurant._id }}/edit" method="post">
-  <input type="text" name="name" id="name" placeholder="name..." value="{{ restaurant.name }}">
-  <button type="submit">save</button>
-  <a href="/">back</a>
-</form>
+<div class="editPage mt-5 d-flex justify-content-center mb-5">
+  <form action="/restaurants/{{ restaurant._id }}/edit" method="post" class="col-4">
+    <div class="form mb-4">
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" name="name" id="name" value="{{ restaurant.name }}" required>
+        <label for="name">名稱 <span style="color: red;">*</span></label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" name="name_en" id="name_en" value="{{ restaurant.name_en }}">
+        <label for="name">英文名稱</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input class="form-control" name="category" id="category" value="{{ restaurant.category }}" list="categories">
+        <datalist id="categories">
+          <option>美式餐廳</option>
+          <option>義式餐廳</option>
+          <option>日式料理</option>
+          <option>中東餐廳</option>
+          <option>韓式料理</option>
+          <option>咖啡廳</option>
+          <option>酒吧</option>
+          <option>咖啡廳</option>
+          <option>火鍋店</option>
+        </datalist>
+        <label for="category">分類</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="url" class="form-control" name="image" id="image" value="{{ restaurant.image }}">
+        <label for="image">圖片連結 <span style="color: red;">*</span></label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="tel" class="form-control" name="phone" id="phone" value="{{ restaurant.phone }}">
+        <label for="phone">聯絡電話</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="number" class="form-control" name="rating" id="rating" value="{{ restaurant.rating }}" max="10"
+          required>
+        <label for="rating">評分 <span style="color: red;">*</span></label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" name="location" id="location" value="{{ restaurant.location }}"
+          required>
+        <label for="location">地址 <span style="color: red;">*</span></label>
+      </div>
+      <div class="form-floating">
+        <textarea class="form-control" name="description" id="description"
+          style="height: 150px;">{{ restaurant.description }}</textarea>
+        <label for="description">敘述</label>
+      </div>
+    </div>
+    <div class="button-placed d-flex justify-content-center">
+      <input class="btn btn-primary" type="submit" value="確認送出">
+      <a href="/" class="btn btn-outline-danger ms-3">返回首頁</a>
+    </div>
+  </form>
+</div>
