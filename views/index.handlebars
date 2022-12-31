@@ -46,10 +46,32 @@
             <!-- detail link-->
             <a href=" ./restaurants/{{ this._id }}" class="btn btn-outline-secondary btn-sm mx-1">Detail</a>
             <!-- delete button-->
-            <form action="./restaurants/{{ this._id }}/delete" method="post" style="display: inline;">
-              <button type="submit" class="btn btn-outline-danger btn-sm mx-1">delete</button>
-            </form>
+            <button type="button" class="btn btn-outline-danger btn-sm mx-1" data-bs-toggle="modal"
+              data-bs-target="#deleteButton-{{ this._id }}">
+              delete
+            </button>
           </span>
+          <!-- delete alert modal -->
+          <div class="modal fade" id="deleteButton-{{ this._id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">提醒視窗</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  確定要刪除 {{ this.name }} 這筆資料嗎？
+                </div>
+                <div class="modal-footer">
+                  <form action="./restaurants/{{ this._id }}/delete" method="post" style="display: inline;">
+                    <button type="submit" class="btn btn-outline-danger">刪除</button>
+                  </form>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">返回</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         {{/each}}
       </div>

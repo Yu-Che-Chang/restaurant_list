@@ -4,7 +4,6 @@ const app = express()
 const ephds = require('express-handlebars')
 const mongoose = require('mongoose') // 載入 mongoose
 const bodyParser = require('body-parser')
-const restaurantList = require('./restaurant.json') // 載入 餐廳資料
 const RestaurantModal = require('./models/restaurantModal')
 
 // 加入這段 code, 僅在非正式環境時, 使用 dotenv
