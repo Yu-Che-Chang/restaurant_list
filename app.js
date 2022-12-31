@@ -42,15 +42,16 @@ app.get('/', (req, res) => {
 // 優化: En 大小寫轉換 / 餐庭名稱空格去除
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword.toLowerCase().trim()
-  
+
   RestaurantModal.find()
     .lean()
     .then(restaurantData => {
+      const restaurantRow = restaurantData
       const restaurantDataFiltered = restaurantData.filter(restaurant =>
         restaurant.name.replace(' ', '').toLowerCase().includes(keyword) ||
         restaurant.category.toLowerCase().includes(keyword)
       )
-      res.render('index', { restaurantData: restaurantDataFiltered, keyword })
+      res.render('index', { restaurantData: restaurantDataFiltered, keyword, restaurantRow })
     })
     .catch(error => console.log(error))
 })

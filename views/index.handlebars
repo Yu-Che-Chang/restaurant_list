@@ -63,10 +63,11 @@
       改搜其他餐廳：
       <ul class="recommend-list pt-1">
         {{#each restaurantRow}}
-        <a href="/restaurants/{{this.id}}" class="text-secondary px-1">{{this.name}}</a>
+        <a href="/restaurants/{{this._id}}" class="text-secondary px-1">{{this.name}}</a>
         {{/each}}
       </ul>
     </div>
+    <a href="/" class="mb-5">Back</a>
   </div>
 </div>
 {{/if}}
