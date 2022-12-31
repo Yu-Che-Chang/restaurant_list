@@ -38,6 +38,23 @@ app.get('/', (req, res) => {
     .catch(error => console.error(error))
 })
 
+// route setting: 查詢字串
+// 優化: En 大小寫轉換 / 餐庭名稱空格去除
+app.get('/search', (req, res) => {
+  const keyword = req.query.keyword.toLowerCase().trim()
+  
+  RestaurantModal.find()
+    .lean()
+    .then(restaurantData => {
+      const restaurantDataFiltered = restaurantData.filter(restaurant =>
+        restaurant.name.replace(' ', '').toLowerCase().includes(keyword) ||
+        restaurant.category.toLowerCase().includes(keyword)
+      )
+      res.render('index', { restaurantData: restaurantDataFiltered, keyword })
+    })
+    .catch(error => console.log(error))
+})
+
 // route setting: CREATE page
 app.get('/restaurants/new', (req, res) => {
   res.render('new')
@@ -58,18 +75,6 @@ app.get('/restaurants/:restaurantsId', (req, res) => {
     .lean()
     .then(restaurantData => res.render('show', { restaurantInfo: restaurantData }))
     .catch(error => console.log(error))
-})
-
-// route setting: 查詢字串
-// 優化: En 大小寫轉換 / 餐庭名稱空格去除
-app.get('/search', (req, res) => {
-  const keyword = req.query.keyword.toLowerCase().trim()
-  const restaurantRow = restaurantList.results
-  const restaurantsFiltered = restaurantList.results.filter(restaurant =>
-    restaurant.name.replace(' ', '').toLowerCase().includes(keyword) ||
-    restaurant.category.toLowerCase().includes(keyword)
-  )
-  res.render('index', { restaurants: restaurantsFiltered, keyword, restaurantRow })
 })
 
 // route setting: edit page
