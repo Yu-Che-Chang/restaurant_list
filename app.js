@@ -12,7 +12,7 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
 app.use(bodyParser.urlencoded({ extender: true })) // res.body 物件
-app.use(express.static("public"))
+app.use(express.static('public'))
 
 mongoose.connect(process.env.MONGODB_URI) // 連線到 mongoDB
 
@@ -38,16 +38,29 @@ app.get('/', (req, res) => {
     .catch(error => console.error(error))
 })
 
-// detail page
-app.get('/restaurants/:id', (req, res) => {
-  const id = req.params.id
+// route setting: CREATE page
+app.get('/restaurants/new', (req, res) => {
+  res.render('new')
+})
+
+// CREATE function:
+app.post('/restaurants', (req, res) => {
+  const survey = req.body
+  RestaurantModal.create(survey)
+    .then(() => res.redirect('/'))
+    .catch(error => console.log('error'))
+})
+
+// route setting: detail page
+app.get('/restaurants/:restaurantsId', (req, res) => {
+  const id = req.params.restaurantsId
   RestaurantModal.findById(id)
     .lean()
     .then(restaurantData => res.render('show', { restaurantInfo: restaurantData }))
     .catch(error => console.log(error))
 })
 
-// 查詢字串
+// route setting: 查詢字串
 // 優化: En 大小寫轉換 / 餐庭名稱空格去除
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword.toLowerCase().trim()
@@ -59,7 +72,7 @@ app.get('/search', (req, res) => {
   res.render('index', { restaurants: restaurantsFiltered, keyword, restaurantRow })
 })
 
-// edit page
+// route setting: edit page
 app.get('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
   return RestaurantModal.findById(id)
@@ -68,7 +81,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.error(error))
 })
 
-// EDIT: 
+// EDIT and UPDATE: 
 app.post('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
   const survey = req.body
@@ -76,8 +89,6 @@ app.post('/restaurants/:id/edit', (req, res) => {
     .then(() => res.redirect('/')) // 返回首頁
     .catch(error => console.log('error'))
 })
-
-// CREATE:
 
 app.listen(port, () => {
   console.log(`Now server is on http://localhost:${port}`)

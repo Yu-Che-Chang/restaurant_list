@@ -1,16 +1,16 @@
 <div class="editPage mt-5 d-flex justify-content-center mb-5">
-  <form action="/restaurants/{{ restaurant._id }}/edit" method="post" class="col-4">
+  <form action="/restaurants" method="post" class="col-4">
     <div class="form mb-4">
       <div class="form-floating mb-3">
-        <input type="text" class="form-control" name="name" id="name" value="{{ restaurant.name }}" required>
+        <input type="text" class="form-control" name="name" id="name" required>
         <label for="name">名稱 <span style="color: red;">*</span></label>
       </div>
       <div class="form-floating mb-3">
-        <input type="text" class="form-control" name="name_en" id="name_en" value="{{ restaurant.name_en }}">
+        <input type="text" class="form-control" name="name_en" id="name_en">
         <label for="name">英文名稱</label>
       </div>
       <div class="form-floating mb-3">
-        <input class="form-control" name="category" id="category" value="{{ restaurant.category }}" list="categories">
+        <input class="form-control" name="category" id="category" list="categories">
         <datalist id="categories">
           <option>美式餐廳</option>
           <option>義式餐廳</option>
@@ -25,30 +25,27 @@
         <label for="category">分類</label>
       </div>
       <div class="form-floating mb-3">
-        <input type="url" class="form-control" name="image" id="image" value="{{ restaurant.image }}">
+        <input type="url" class="form-control" name="image" id="image">
         <label for="image">圖片連結 <span style="color: red;">*</span></label>
       </div>
       <div class="form-floating mb-3">
-        <input type="url" class="form-control" name="google_map" id="google_map" value="{{ restaurant.google_map }}">
+        <input type="url" class="form-control" name="google_map" id="google_map">
         <label for="google_map">Google Map 連結</label>
       </div>
       <div class="form-floating mb-3">
-        <input type="tel" class="form-control" name="phone" id="phone" value="{{ restaurant.phone }}">
+        <input type="tel" class="form-control" name="phone" id="phone">
         <label for="phone">聯絡電話</label>
       </div>
       <div class="form-floating mb-3">
-        <input type="number" class="form-control" name="rating" id="rating" value="{{ restaurant.rating }}" max="10"
-          required>
+        <input type="number" class="form-control" name="rating" id="rating" max="10" required>
         <label for="rating">評分 <span style="color: red;">*</span></label>
       </div>
       <div class="form-floating mb-3">
-        <input type="text" class="form-control" name="location" id="location" value="{{ restaurant.location }}"
-          required>
+        <input type="text" class="form-control" name="location" id="location" required>
         <label for="location">地址 <span style="color: red;">*</span></label>
       </div>
       <div class="form-floating">
-        <textarea class="form-control" name="description" id="description"
-          style="height: 150px;">{{ restaurant.description }}</textarea>
+        <textarea class="form-control" name="description" id="description" style="height: 150px;"></textarea>
         <label for="description">敘述</label>
       </div>
     </div>
