@@ -96,6 +96,14 @@ app.post('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.log('error'))
 })
 
+// DELETE function:
+app.post('/restaurants/:id/delete', (req, res) => {
+  const id = req.params.id
+  RestaurantModal.findByIdAndRemove(id)
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
+
 app.listen(port, () => {
   console.log(`Now server is on http://localhost:${port}`)
 })

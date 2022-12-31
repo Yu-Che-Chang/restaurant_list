@@ -39,13 +39,14 @@
               </div>
             </div>
           </a>
+          <!-- button port-->
           <span class="mb-3 d-flex justify-content-end">
             <!-- edit link-->
             <a href="./restaurants/{{ this._id }}/edit" class="btn btn-outline-secondary btn-sm mx-1">Edit</a>
             <!-- detail link-->
             <a href=" ./restaurants/{{ this._id }}" class="btn btn-outline-secondary btn-sm mx-1">Detail</a>
             <!-- delete button-->
-            <form action="" method="post" style="display: inline;">
+            <form action="./restaurants/{{ this._id }}/delete" method="post" style="display: inline;">
               <button type="submit" class="btn btn-outline-danger btn-sm mx-1">delete</button>
             </form>
           </span>
