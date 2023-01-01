@@ -20,10 +20,10 @@
 <div class="container mt-5">
   {{#if restaurantData}}
   <div class="row">
-    <div class="col-md-10 col-12 mx-auto">
-      <div class="row row-cols-sm-3">
+    <div class="col-md-10 col-12 mx-md-auto">
+      <div class="row row-cols-xl-5 row-cols-lg-4 row-cols-md-3  row-cols-sm-2">
         {{#each restaurantData}}
-        <div class="mb-4">
+        <div class="col mb-4">
           <a href="/restaurants/{{this._id}}" class="text-secondary">
             <div class="card mb-3">
               <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">
