@@ -72,13 +72,28 @@ app.get('/restaurants/rating', (req, res) => {
     .catch(error => console.error(error))
 })
 
+// 最新餐廳
 app.get('/restaurants/recent', (req, res) => {
   // get RestaurantModal data
   RestaurantModal.find() // 找到 DB 資料
     .lean() // 轉換成 js 格式
     .then(restaurantData => {
-      const recentData = restaurantData.sort((a,b) => -1) //  順序顛倒
+      const recentData = restaurantData.sort((a, b) => -1) //  順序顛倒
       res.render('index', { restaurantData: recentData })
+    })
+    .catch(error => console.error(error))
+})
+
+// 評分篩選
+app.get('/restaurants/rating/:score', (req, res) => {
+  const score = Math.floor(parseInt(req.params.score))
+  RestaurantModal.find()
+    .lean()
+    .then(restaurantData => {
+      const scoreFilter = restaurantData.filter(restaurant => String(restaurant.rating).includes(score))
+      .sort((a, b) => b.rating - a.rating) // 評分排序
+      
+      res.render('index', { restaurantData: scoreFilter })
     })
     .catch(error => console.error(error))
 })

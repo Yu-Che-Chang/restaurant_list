@@ -33,13 +33,18 @@
               <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">
               <div class="card-body p-3">
                 <h6 class="card-title mb-1">{{this.name}}</h6>
-                <div class="restaurant-category mb-1">
-                  <i class="fas fa-utensils pr-2"></i> {{this.category}}
+                <a href="/search?keyword={{this.category}}" class="restaurant-category text-secondary mb-1">
+                  <i class="fas fa-utensils pr-2" style="z-index: 1;"></i> {{this.category}}
+                </a>
+                <div class="restaurant-rating">
+                  <a href="/restaurants/rating/{{ this.rating
+}}" class="restaurant-category text-secondary mb-1">
+                    <span class="badge bg-danger font-weight-normal">
+                      {{this.rating}}
+                      <i class="fas fa-star fa-xs"></i>
+                    </span>
+                  </a>
                 </div>
-                <span class="badge bg-danger font-weight-normal">
-                  {{this.rating}}
-                  <i class="fas fa-star fa-xs"></i>
-                </span>
               </div>
             </div>
           </a>
