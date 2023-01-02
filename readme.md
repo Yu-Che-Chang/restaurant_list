@@ -1,4 +1,4 @@
-# 餐廳清單 CRUD_2.0
+# 餐廳清單_CRUD 2.0
 主畫面:
 ![image](https://github.com/Yu-Che-Chang/restaurant_list/blob/main/public/image/main_page.png)
 餐廳簡介:
@@ -25,7 +25,7 @@
 - 餐廳敘述
 + 使用者可以搜尋餐廳關鍵字、分類找到特定餐廳
 + 使用者可以新增、刪除、編輯餐廳
-+ 使用者可以在首頁依照排行評分、新增順序瀏覽餐廳順序
++ 使用者可以在首頁依照評分、資料新增時間瀏覽餐廳
 
 安裝執行：
 ---
@@ -54,6 +54,3 @@ npm run start  //執行程式
 + 樣板引擎：express-handlebars@3.0.0
 + 程式編輯器：VScode
 + nodemon@2.0.20
-+ mongoose
-+ body-parser
-+ dotenv
