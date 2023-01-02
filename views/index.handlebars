@@ -12,6 +12,10 @@
           </div>
         </div>
       </form>
+      <div class="sequence mt-3">
+        <a href="/restaurants/rating" class="btn btn-primary">評分最高 <i class="fa-solid fa-fire"></i></a>
+        <a href="/restaurants/recent" class="btn btn-primary">最新餐廳 <i class="fa-solid fa-eye"></i></a>
+      </div>
     </div>
   </div>
 </div>
@@ -20,8 +24,8 @@
 <div class="container mt-5">
   {{#if restaurantData}}
   <div class="row">
-    <div class="col-md-10 col-12 mx-md-auto">
-      <div class="row row-cols-xl-5 row-cols-lg-4 row-cols-md-3  row-cols-sm-2">
+    <div class="col-lg-12 col-md-10 col-sm-8 col-xs-6 mx-auto">
+      <div class="row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
         {{#each restaurantData}}
         <div class="col mb-4">
           <a href="/restaurants/{{this._id}}" class="text-secondary">

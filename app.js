@@ -60,6 +60,29 @@ app.get('/restaurants/new', (req, res) => {
   res.render('new')
 })
 
+// 評分排序
+app.get('/restaurants/rating', (req, res) => {
+  // get RestaurantModal data
+  RestaurantModal.find() // 找到 DB 資料
+    .lean() // 轉換成 js 格式
+    .then(restaurantData => {
+      const sequence = restaurantData.sort((a, b) => b.rating - a.rating)
+      res.render('index', { restaurantData: sequence })
+    })
+    .catch(error => console.error(error))
+})
+
+app.get('/restaurants/recent', (req, res) => {
+  // get RestaurantModal data
+  RestaurantModal.find() // 找到 DB 資料
+    .lean() // 轉換成 js 格式
+    .then(restaurantData => {
+      const recentData = restaurantData.sort((a,b) => -1) //  順序顛倒
+      res.render('index', { restaurantData: recentData })
+    })
+    .catch(error => console.error(error))
+})
+
 // CREATE function:
 app.post('/restaurants', (req, res) => {
   const survey = req.body
