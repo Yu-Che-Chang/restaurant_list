@@ -1,5 +1,5 @@
 <div class="editPage mt-5 d-flex justify-content-center mb-5">
-  <form action="/restaurants/{{ restaurant._id }}/edit" method="post" class="col-4">
+  <form action="/restaurants/{{ restaurant._id }}?_method=PUT" method="post" class="col-4">
     <div class="form mb-4">
       <div class="form-floating mb-3">
         <input type="text" class="form-control" name="name" id="name" value="{{ restaurant.name }}" required>
