@@ -65,12 +65,12 @@
             </button>
           </span>
           <!-- delete alert modal -->
-          <div class="modal fade" id="deleteButton-{{ this._id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+          <div class="modal fade" id="deleteButton-{{ this._id }}" tabindex="-1" aria-labelledby="alertModal"
             aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">提醒視窗</h5>
+                  <h5 class="modal-title" id="alertModal">提醒視窗</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -78,7 +78,7 @@
                 </div>
                 <div class="modal-footer">
                   <form action="./restaurants/{{ this._id }}?_method=DELETE" method="post" style="display: inline;">
-                    <button type="submit" class="btn btn-outline-danger">刪除</button>
+                    <button type="submit" class="btn btn-outline-danger" id="deleteSubmit">刪除</button>
                   </form>
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">返回</button>
                 </div>
