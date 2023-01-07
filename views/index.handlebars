@@ -1,21 +1,25 @@
 <!-- search bar -->
 <div class="container search-bar">
   <div class="search-bar-outer">
-    <div class="search-bar-inner">
-      <form action="/search">
-        <h4 class="mb-2">尋找餐廳：</h4>
+    <div class="search-bar-inner row">
+      <h4 class="mb-2">尋找餐廳：</h4>
+      <form action="/search" class="col-8">
         <div class="input-group">
-          <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
+          <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳" aria-label="Restaurant Name..."
             value="{{keyword}}" aria-describedby="search-button">
           <div class="input-group-append">
             <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
           </div>
         </div>
       </form>
-      <div class="sequence mt-3">
-        <a href="/restaurants/rating" class="btn btn-primary">評分最高 <i class="fa-solid fa-fire"></i></a>
-        <a href="/restaurants/recent" class="btn btn-primary">最新餐廳 <i class="fa-solid fa-eye"></i></a>
-      </div>
+      <form class="col-4" action="{{ direct }}" method="post" id="form">
+        <select class="form-select" aria-label="sort" name="sort" id="sort" onchange="this.form.submit()">
+          <option id="recent" value="recent" {{ifSort "recent" lastSelected}}>最新餐廳</option>
+          <option id="asc" value="asc" {{ifSort "asc" lastSelected}}>A -> Z</option>
+          <option id="desc" value="desc" {{ifSort "desc" lastSelected}}>Z -> A</option>
+          <option id="rating" value="rating" {{ifSort "rating" lastSelected}}>評分最高</option>
+        </select>
+      </form>
     </div>
   </div>
 </div>
@@ -27,7 +31,7 @@
     <div class="col-lg-12 col-md-10 col-sm-8 col-xs-6 mx-auto">
       <div class="row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
         {{#each restaurantData}}
-        <div class="col mb-4">
+        <div class="col mb-4" id="restaurant">
           <a href="/restaurants/{{this._id}}" class="text-secondary">
             <div class="card mb-3">
               <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">
@@ -36,10 +40,10 @@
                 <a href="/search?keyword={{this.category}}" class="restaurant-category text-secondary mb-1">
                   <i class="fas fa-utensils pr-2" style="z-index: 1;"></i> {{this.category}}
                 </a>
-                <div class="restaurant-rating">
+                <div class="restaurant-info">
                   <a href="/restaurants/rating/{{ this.rating
 }}" class="restaurant-category text-secondary mb-1">
-                    <span class="badge bg-danger font-weight-normal">
+                    <span class="badge bg-danger font-weight-normal rating">
                       {{this.rating}}
                       <i class="fas fa-star fa-xs"></i>
                     </span>

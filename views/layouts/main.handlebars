@@ -12,28 +12,29 @@
   <link rel="shortcut icon"
     href="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png"
     type="image/x-icon">
-
 </head>
 
 <body>
 
-  <header></header>
-  <!-- navigation -->
-  <nav class="navbar navbar-light bg-light">
-    <div class="container">
-      <a class="navbar-brand" href="/">
-        <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png"
-          width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
-        我的餐廳清單
-      </a>
-      <a href="/restaurants/new" class="btn btn-outline-primary">添加新餐廳</a>
-    </div>
-  </nav>
-  <div class="banner"></div>
+  <header>
+    <!-- navigation -->
+    <nav class="navbar navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png"
+            width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
+          我的餐廳清單
+        </a>
+        <a href="/restaurants/new" class="btn btn-outline-primary">添加新餐廳</a>
+      </div>
+    </nav>
+    <div class="banner"></div>
   </header>
 
   {{!-- 局部樣板 --}}
-  {{{body}}}
+  <main>
+    {{{body}}}
+  </main>
 
   {{!-- includes javascripts files --}}
   <script src="/javascripts/popper.js"></script>

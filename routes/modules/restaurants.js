@@ -7,39 +7,15 @@ router.get('/new', (req, res) => {
   res.render('new')
 })
 
-// 評分排序
-router.get('/rating', (req, res) => {
-  // get RestaurantModal data
-  RestaurantModal.find() // 找到 DB 資料
-    .lean() // 轉換成 js 格式
-    .then(restaurantData => {
-      const sequence = restaurantData.sort((a, b) => b.rating - a.rating)
-      res.render('index', { restaurantData: sequence })
-    })
-    .catch(error => console.error(error))
-})
-
-// 最新餐廳
-router.get('/recent', (req, res) => {
-  // get RestaurantModal data
-  RestaurantModal.find() // 找到 DB 資料
-    .lean() // 轉換成 js 格式
-    .then(restaurantData => {
-      const recentData = restaurantData.sort((a, b) => -1) //  順序顛倒
-      res.render('index', { restaurantData: recentData })
-    })
-    .catch(error => console.error(error))
-})
-
 // 評分篩選
 router.get('/rating/:score', (req, res) => {
-  const score = Math.floor(parseInt(req.params.score))
+  const score = req.params.score
+  const lastScore = parseInt(req.params.score)
   RestaurantModal.find()
     .lean()
+    .sort({ rating: -1 })// 評分排序
     .then(restaurantData => {
-      const scoreFilter = restaurantData.filter(restaurant => String(restaurant.rating).includes(score))
-        .sort((a, b) => b.rating - a.rating) // 評分排序
-
+      const scoreFilter = restaurantData.filter(restaurant => Number(restaurant.rating) <= score && Number(restaurant.rating) >= lastScore)
       res.render('index', { restaurantData: scoreFilter })
     })
     .catch(error => console.error(error))
