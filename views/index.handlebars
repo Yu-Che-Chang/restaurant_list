@@ -41,8 +41,7 @@
                   <i class="fas fa-utensils pr-2" style="z-index: 1;"></i> {{this.category}}
                 </a>
                 <div class="restaurant-info">
-                  <a href="/restaurants/rating/{{ this.rating
-}}" class="restaurant-category text-secondary mb-1">
+                  <a href="/restaurants/rating/{{ this.rating }}" class="restaurant-category text-secondary mb-1">
                     <span class="badge bg-danger font-weight-normal rating">
                       {{this.rating}}
                       <i class="fas fa-star fa-xs"></i>
@@ -55,9 +54,9 @@
           <!-- button port-->
           <span class="mb-3 d-flex justify-content-end">
             <!-- edit link-->
-            <a href="./restaurants/{{ this._id }}/edit" class="btn btn-outline-secondary btn-sm mx-1">Edit</a>
+            <a href="/restaurants/{{ this._id }}/edit" class="btn btn-outline-secondary btn-sm mx-1">Edit</a>
             <!-- detail link-->
-            <a href=" ./restaurants/{{ this._id }}" class="btn btn-outline-secondary btn-sm mx-1">Detail</a>
+            <a href="/restaurants/{{ this._id }}" class="btn btn-outline-secondary btn-sm mx-1">Detail</a>
             <!-- delete button-->
             <button type="button" class="btn btn-outline-danger btn-sm mx-1" data-bs-toggle="modal"
               data-bs-target="#deleteButton-{{ this._id }}">
@@ -77,7 +76,7 @@
                   確定要刪除 {{ this.name }} 這筆資料嗎？
                 </div>
                 <div class="modal-footer">
-                  <form action="./restaurants/{{ this._id }}?_method=DELETE" method="post" style="display: inline;">
+                  <form action="/restaurants/{{ this._id }}?_method=DELETE" method="post" style="display: inline;">
                     <button type="submit" class="btn btn-outline-danger" id="deleteSubmit">刪除</button>
                   </form>
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">返回</button>

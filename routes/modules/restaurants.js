@@ -15,7 +15,7 @@ router.get('/rating/:score', (req, res) => {
     .lean()
     .sort({ rating: -1 })// 評分排序
     .then(restaurantData => {
-      const scoreFilter = restaurantData.filter(restaurant => Number(restaurant.rating) < (lastScore + 1)  && Number(restaurant.rating) >= lastScore)
+      const scoreFilter = restaurantData.filter(restaurant => Number(restaurant.rating) < (lastScore + 1) && Number(restaurant.rating) >= lastScore)
       res.render('index', { restaurantData: scoreFilter })
     })
     .catch(error => console.error(error))
